@@ -8,10 +8,13 @@ Welcome to the project documentation for **RPMsg DMA Offload**. This project dem
 
 This repository contains:
 - A shared library `libti_rpmsg_dma.so` for interfacing with RPMsg and DMA Heaps
-- A demo application `rpmsg_audio_offload_example` that supports:
-  - FFT-based audio processing (Band pass filtering)
-  - ARM/DSP execution switching
-  - IP-based(ethernet) and uart based monitoring, runtime control and logging
+- Demo applications
+  1. `rpmsg_audio_offload_example`:
+    - FFT-based audio processing (Band pass filtering)
+    - ARM/DSP execution switching
+    - IP-based(ethernet) and uart based monitoring, runtime control and logging
+  2. `rpmsg_2dfft_offload_example`:
+    - Test data 2DFFT prcoessing on C7.
 
 ---
 
@@ -172,26 +175,34 @@ Optional:
 To build only the library or only the example, use:
 
 cmake -S . -B build -DBUILD_LIB=OFF    # disables library build
-cmake -S . -B build -DBUILD_EXAMPLE=OFF # disables example build
+cmake -S . -B build -DBUILD_AUDIO_OFFLOAD_EXAMPLE=OFF # disables audio_offload example build
+cmake -S . -B build -DBUILD_2DFFT_OFFLOAD_EXAMPLE=OFF # disables 2dfft_offload example build
 ```
 
 ## ▶ Usage
 ```
 1. Flash image with `ti-rpmsg-char` support on AM62A/62D.
-2. Deploy:
+2. Deploy library:
     - `libti_rpmsg_dma.so` to `/usr/lib/`
-    - `rpmsg_audio_offload_example` to `/usr/bin/`
-    - `dsp_offload.cfg` to `/etc/dsp_offload.cfg`
-    - `sample_audio.wav` to `/usr/share/sample_audio`
-    - `dsp_audio_filter_offload.c75ss0-0.release.strip.out` to `/usr/lib/`
+3. Deploy examples:
+    1. audio_offload example
+      - `rpmsg_audio_offload_example` to `/usr/bin/`
+      - `dsp_offload.cfg` to `/etc/dsp_offload.cfg`
+      - `sample_audio.wav` to `/usr/share/sample_audio`
+      - `dsp_audio_filter_offload.c75ss0-0.release.strip.out` to `/usr/lib/firmware`
+    2. 2dfft_offload example
+      - `rpmsg_2dfft_example` to `/usr/bin/`
+      - `2dfft_input_data.bin` to `/usr/share/2dfft_test_data/`
+      - `2dfft_expected_output_data.bin` to `/usr/share/2dfft_test_data/`
+      - `dsp_2dfft_offload.c75ss0-0.release.strip.out` to `/usr/lib/firmware`
 
-3. Run:
-rpmsg_audio_offload_example
+4. Run:
+rpmsg_audio_offload_example or rpmsg_2dfft_example
 
 4. Monitor UART or system logs for output.
 
 
-## 📡 Ethernet Commands
+## 📡 Ethernet Commands (only applicable for audio_offload example)
 
 ```text
 SET FFT FILTER <value>
