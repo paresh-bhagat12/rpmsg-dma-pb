@@ -84,7 +84,7 @@ AUDIO_LOGGING_ENABLE: 1 to save raw audio data to file(/tmp/wave_xx_ch0.txt)
 1. Ensure your DSP firmware images are installed under /lib/firmware/ as referenced in the config.
 2. Launch the example:
 	rpmsg_audio_offload_example
-3. Monitor logs via UART or dmesg.
+3. Monitor logs via UART console/dmesg.
 ```
 ## Host-Side Utility
 ```
