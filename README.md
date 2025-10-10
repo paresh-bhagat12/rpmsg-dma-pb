@@ -54,11 +54,18 @@ library/lib/, library/obj          - Build outputs (ignored by git)
 example/audio_offload/
     ├── src/                    - Example source
     ├── inc/                    - Example headers
-    ├── audio_sample/           - Audio sample file (8ch 48Khz
+    ├── audio_sample/           - Audio sample file (8ch 48Khz)
     ├── host utility/EQ_CTL.py  - Host side python utility to monitor and control EQ params
     ├── firmware	        - C7 DSP firmware for examples
     ├── config/dsp_offload.cfg  - Runtime config file
-Makefile
+example/2dfft/
+    ├── src/                    - Example source
+    ├── inc/                    - Example headers
+    ├── test_data/              - Input sample and expected output sample data
+    ├── firmware	        - C7 DSP firmware for examples
+CMakeLists.txt
+LICENSE
+README.md
 ```
 
 ## RPMSG, DMABUF & FW LOADER API Documentation

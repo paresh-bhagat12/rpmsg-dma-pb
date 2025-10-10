@@ -19,5 +19,5 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/test_data/2dfft_input_data.bin
 	DESTINATION /usr/share/2dfft_test_data/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/test_data/2dfft_expected_output_data.bin
 	DESTINATION /usr/share/2dfft_test_data/)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/firmware/dsp_2dfft_offload.c75ss0-0.release.strip.out
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/firmware/fft2d_linux_dsp_offload_example.c75ss0-0.release.strip.out
 	DESTINATION /usr/lib/firmware)

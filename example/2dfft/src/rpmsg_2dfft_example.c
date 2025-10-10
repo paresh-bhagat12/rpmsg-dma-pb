@@ -23,16 +23,16 @@
 #include "fw_loader.h"
 
 /** @brief Path to the input file containing FFT data. */
-#define INPUT_FILE		"/usr/share/2dfft_input_data.bin"
+#define INPUT_FILE		"/usr/share/2dfft_test_data/2dfft_input_data.bin"
 
 /** @brief Path to the file containing expected output data for validation. */
-#define EXPECTED_OUTPUT_FILE	"/usr/share/2dfft_expected_output_data.bin"
+#define EXPECTED_OUTPUT_FILE	"/usr/share/2dfft_test_data/2dfft_expected_output_data.bin"
 
 /** @brief Path to the base firmware for the C7x processor. */
 #define C7_BASE_FW		"/lib/firmware/ti-ipc/am62dxx/ipc_echo_test_c7x_1_release_strip.xe71"
 
 /** @brief Path to the test firmware for the 2D FFT operation. */
-#define C7_TEST_FW		"/lib/firmware/ipc_rpmsg_fft_2d.release.out"
+#define C7_TEST_FW		"/lib/firmware/fft2d_linux_dsp_offload_example.c75ss0-0.release.strip.out"
 
 /** @brief Symbolic link to the firmware for the C7x processor. */
 #define C7_FW_LINK		"/lib/firmware/am62d-c71_0-fw"
