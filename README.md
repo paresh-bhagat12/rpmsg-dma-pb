@@ -222,6 +222,6 @@ SET FFT FILTER <value>
 
 ## 📄 License
 ```
-This project is licensed under the [BSD 3-Clause](../LICENSE).
+This project is licensed under the [TI-TFL](../LICENSE).
 
 ```
