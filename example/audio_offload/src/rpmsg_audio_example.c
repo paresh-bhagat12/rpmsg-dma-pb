@@ -270,7 +270,7 @@ int main(int argc, char **argv)
 	init_host_interface();
 
 	if(current_mode) {
-		dmabuf_sync(options_dma_buf_params.dma_buf_fd, DMA_BUF_SYNC_END);
+		dmabuf_sync(options_dma_buf_params.dma_buf_fd, DMA_BUF_SYNC_START);
 		dspParams->filter_enabled = app_config.fft_filter_enable;
 		dmabuf_sync(options_dma_buf_params.dma_buf_fd, DMA_BUF_SYNC_END);
 	}

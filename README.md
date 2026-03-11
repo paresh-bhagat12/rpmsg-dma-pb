@@ -8,10 +8,18 @@ Welcome to the project documentation for **RPMsg DMA Offload**. This project dem
 
 This repository contains:
 - A shared library `libti_rpmsg_dma.so` for interfacing with RPMsg and DMA Heaps
-- A demo application `rpmsg_audio_offload_example` that supports:
-  - FFT-based audio processing (Band pass filtering)
-  - ARM/DSP execution switching
-  - IP-based(ethernet) and uart based monitoring, runtime control and logging
+- Demo applications
+  1. `rpmsg_audio_offload_example`:
+    - FFT-based audio processing (Band pass filtering)
+    - ARM/DSP execution switching
+    - IP-based(ethernet) and uart based monitoring, runtime control and logging
+  2. `rpmsg_2dfft_offload_example`:
+    - Test data 2DFFT processing on C7x DSP
+  3. `sigchain_biquad_linux_example`:
+    - Real-time 3-stage parametric equalizer (biquad cascade) on C7x DSP
+    - Network-based GUI control and monitoring
+    - MCASP audio I/O with I2C codec control
+    - Live DSP performance monitoring (load, cycles, throughput)
 
 ---
 
@@ -51,11 +59,23 @@ library/lib/, library/obj          - Build outputs (ignored by git)
 example/audio_offload/
     ├── src/                    - Example source
     ├── inc/                    - Example headers
-    ├── audio_sample/           - Audio sample file (8ch 48Khz
+    ├── audio_sample/           - Audio sample file (8ch 48Khz)
     ├── host utility/EQ_CTL.py  - Host side python utility to monitor and control EQ params
     ├── firmware	        - C7 DSP firmware for examples
     ├── config/dsp_offload.cfg  - Runtime config file
-Makefile
+example/2dfft/
+    ├── src/                    - Example source
+    ├── inc/                    - Example headers
+    ├── test_data/              - Input sample and expected output sample data
+    ├── firmware	        - C7 DSP firmware for examples
+example/signal_chain_biquad/
+    ├── src/                    - Board-side Linux application source
+    ├── inc/                    - Example headers
+    ├── host_utility/                    - PC-side Python GUI for network control
+    ├── firmware	        - C7x DSP Cascade Biquad Parametric EQ Signal Chain Example Firmware
+CMakeLists.txt
+LICENSE
+README.md
 ```
 
 ## RPMSG, DMABUF & FW LOADER API Documentation
@@ -172,26 +192,41 @@ Optional:
 To build only the library or only the example, use:
 
 cmake -S . -B build -DBUILD_LIB=OFF    # disables library build
-cmake -S . -B build -DBUILD_EXAMPLE=OFF # disables example build
+cmake -S . -B build -DBUILD_AUDIO_OFFLOAD_EXAMPLE=OFF # disables audio_offload example build
+cmake -S . -B build -DBUILD_2DFFT_OFFLOAD_EXAMPLE=OFF # disables 2dfft_offload example build
+cmake -S . -B build -DBUILD_SIGCHAIN_BIQUAD_EXAMPLE=OFF # disables sigchain_biquad example build
 ```
 
 ## ▶ Usage
 ```
 1. Flash image with `ti-rpmsg-char` support on AM62A/62D.
-2. Deploy:
+2. Deploy library:
     - `libti_rpmsg_dma.so` to `/usr/lib/`
-    - `rpmsg_audio_offload_example` to `/usr/bin/`
-    - `dsp_offload.cfg` to `/etc/dsp_offload.cfg`
-    - `sample_audio.wav` to `/usr/share/sample_audio`
-    - `dsp_audio_filter_offload.c75ss0-0.release.strip.out` to `/usr/lib/`
+3. Deploy examples:
+    1. audio_offload example
+      - `rpmsg_audio_offload_example` to `/usr/bin/`
+      - `dsp_offload.cfg` to `/etc/dsp_offload.cfg`
+      - `sample_audio.wav` to `/usr/share/sample_audio`
+      - `dsp_audio_filter_offload.c75ss0-0.release.strip.out` to `/usr/lib/firmware`
+    2. 2dfft_offload example
+      - `rpmsg_2dfft_example` to `/usr/bin/`
+      - `2dfft_input_data.bin` to `/usr/share/2dfft_test_data/`
+      - `2dfft_expected_output_data.bin` to `/usr/share/2dfft_test_data/`
+      - `dsp_2dfft_offload.c75ss0-0.release.strip.out` to `/usr/lib/firmware`
+    3. sigchain_biquad example
+      - `sigchain_biquad_linux_example` to `/usr/bin/` (board-side application)
+      - `signal_chain_biquad_example_gui.py` to PC (network GUI)
+      - `sigchain_biquad_cascade_c75ss0-0_freertos_linux.release.strip.out` to `/lib/firmware/`
 
-3. Run:
-rpmsg_audio_offload_example
+4. Run:
+   - Audio offload: `rpmsg_audio_offload_example`
+   - 2D FFT: `rpmsg_2dfft_example`
+   - Cascade Biquad Parametric EQ Signal Chain Example: `sigchain_biquad_linux_example` (on board) + `python3 signal_chain_biquad_example_gui.py <board_ip>` (on PC)
 
 4. Monitor UART or system logs for output.
 
 
-## 📡 Ethernet Commands
+## 📡 Ethernet Commands (only applicable for audio_offload example)
 
 ```text
 SET FFT FILTER <value>
@@ -200,10 +235,4 @@ SET FFT FILTER <value>
 - Value: Bool FFT Filter State (0: OFF, 1: ON)
 
 ---
-```
-
-## 📄 License
-```
-This project is licensed under the [BSD 3-Clause](../LICENSE).
-
 ```
