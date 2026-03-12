@@ -31,7 +31,7 @@
  */
 
 /**
- * @file signal_chain_biquad_linux_example.h
+ * @file rpmsg_sigchain_biquad_example.h
  * @brief TI Cascade Biquad Parametric EQ Signal Chain Example
  *
  */

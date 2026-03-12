@@ -35,8 +35,8 @@
  * @brief TI Audio Codecs Control Implementation
  *
  * Hardware-specific implementation for TI audio codec control:
- * - TAD5212: 8-channel DAC (I2C addresses 0x50-0x53)
- * - PCM6240: 4-channel ADC (I2C addresses 0x48-0x49)
+ * - 4 TAD5212 DAC: each 2-channel (I2C addresses 0x50-0x53)
+ * - 2 PCM6240 ADC: each 4-channel (I2C addresses 0x48-0x49)
  */
 
 #include <stdio.h>

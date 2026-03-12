@@ -44,7 +44,7 @@ Network Protocol:
 - Port 8889: Commands to EVM (start/stop with automatic codec control)
 - Port 8890: DSP statistics streaming (JSON)
 
-Usage: python3 sigchain_biquad_demo_gui.py <evm_ip_address>
+Usage: python3 rpmsg_sigchain_biquad_example_gui.py <evm_ip_address>
 """
 
 import threading

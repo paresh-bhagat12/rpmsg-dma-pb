@@ -2,7 +2,7 @@ include(FindPkgConfig)
 
 # Cascade Biquad Parametric EQ Signal Chain Example
 add_executable(rpmsg_sigchain_biquad_example
-    src/signal_chain_biquad_linux_example.c
+    src/rpmsg_sigchain_biquad_example.c
     src/audio_codecs.c
 )
 

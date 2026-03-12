@@ -31,7 +31,7 @@
  */
 
 /**
- * @file signal_chain_biquad_linux_example.c
+ * @file rpmsg_sigchain_biquad_example.c
  * @brief AM62D2-EVM Linux application for control & monitoring of Cascade Biquad Parametric EQ Example running on C7x
  *
  * This application runs on AM62D2-EVM and provides:use
@@ -75,7 +75,7 @@
 #include "rpmsg.h"
 #include "dmabuf.h"
 #include "fw_loader.h"
-#include "signal_chain_biquad_linux_example.h"
+#include "rpmsg_sigchain_biquad_example.h"
 #include "audio_codecs.h"
 
 // === GLOBAL STATE ===
